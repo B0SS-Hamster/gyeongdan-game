@@ -1,0 +1,2 @@
+importScripts('vendor/matter.min.js','hint-model.js');
+onmessage=function(e){try{const state=e.data.state,positions=GyeongdanHints.candidates(state),results=[];for(const x of positions){results.push(GyeongdanHints.rollout(state,x));postMessage({id:e.data.id,progress:results.length,total:positions.length})}postMessage({id:e.data.id,result:GyeongdanHints.summarize(results)})}catch(error){postMessage({id:e.data.id,error:String(error)})}};
